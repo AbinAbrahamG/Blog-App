@@ -9,7 +9,7 @@ const Home = () => {
   const[cardData,setData]=useState([]);
   const navigate=useNavigate();
   useEffect(()=>{
-    axiosInstance.get('http://localhost:9000/blogs').then((res)=>{
+    axiosInstance.get('/api/blogs').then((res)=>{
       setData(res.data);
     }).catch((err)=>{
       console.log(err);
@@ -19,7 +19,7 @@ const Home = () => {
     navigate('/addblogs',{state:{val}});
   }
   function handleDelete(val) {
-    axiosInstance.delete('http://localhost:9000/blogs/deleteblog/' + val._id).then((res) => {
+    axiosInstance.delete('/api/blogs/deleteblog/' + val._id).then((res) => {
       alert(res.data);
       setData(cardData.filter(item => item._id !== val._id));
     }).catch((err) => {
